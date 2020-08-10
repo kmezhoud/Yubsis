@@ -13,4 +13,4 @@ def generate_DNA(N, alphabet=['A','C','G','T',repeat4,repeat10, repeat12]):
         * alphabet: is a list of ['A','C','G','T',repeat4,repeat10, repeat12]
         * return: DNA sequence with upper and lower cases
    """
-    return ''.join([random.choice(alphabet) for i in range(N)])
+  return(''.join([random.choice(alphabet) for i in range(N)]))
