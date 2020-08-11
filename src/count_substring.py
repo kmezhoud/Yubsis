@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
+  # """
+  #     * Description: Count occurence with overlapping
+  #     * string: alphabetic sequence with upper and/or lower cases
+  #     * sub_string: alphabetic motif with upper cases
+  #     
+  # """
 
 
 def count_substring(string,sub_string):
-  """
-      * Description: Count occurence with overlapping
-      * string: alphabetic sequence with upper and/or lower cases
-      * sub_string: alphabetic motif with upper cases
-      
-  """
-    
     # Insure if string and sub_string are in upper cases
     string = string.upper()
     sub_string = sub_string.upper()

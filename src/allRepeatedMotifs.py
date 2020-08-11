@@ -3,13 +3,14 @@
 from collections import Counter as cntr 
 import pandas as pd
 
+  # """
+  #    * Description: Find all repeated motifs
+  #    * dna: DNA sequence
+  #    * minimum: minimum length of motifs
+  #    * maximum: maximum length for motifs
+  # """
+
 def allRepeatedMotifs(dna, minimum, maximum):
-  """
-     * Description: Find all repeated motifs
-     * dna: DNA sequence
-     * minimum: minimum length of motifs
-     * maximum: maximum length for motifs
-  """
  
     # insure that DNA in upper cases
     dna = dna.upper()

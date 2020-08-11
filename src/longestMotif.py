@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
+  # """    
+  #        * Description: Find the Longest motif with at less 2 repeats: avoid overlapping motifs 
+  #        * dna: a sequence of ATCG bp
+  #        * return: string
+  # """
 
 def longestMotif(dna):  
-  """    
-         * Description: Find the Longest motif with at less 2 repeats: avoid overlapping motifs 
-         * dna: a sequence of ATCG bp
-         * return: string
-  """
+
     # unsure if DNA is in upper Cases
     dna = dna.upper()
     n = len(dna) 
