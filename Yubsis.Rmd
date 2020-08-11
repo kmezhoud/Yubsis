@@ -76,7 +76,9 @@ reticulate::py_config()
 
 # Generate DNA sequence {.tabset .tabset-fade .tabset-pills}
 
-Here we define a function that generates a random DNA sequence using only `TACG`. As said in te description there is no gaps `-`.
+Here we define a function that generates a random DNA sequence using only `TACG`. 
+
+As said in the description there is no gaps `-`.
 
 ## DNA WITHOUT repeating motifs
 
@@ -144,22 +146,21 @@ print(len(dna))
 ```{python}
 # Returns the longest  motif (non-overlapping)
 def longestMotif(dna): 
-    # unsure if DNA is in upper Cases
+    # insure if DNA is in upper Cases
     dna = dna.upper()
     n = len(dna) 
     motif = [[0 for x in range(n + 1)]  
                 for y in range(n + 1)] 
   
-    longest_motif = "" # To store result 
-    longest_motif_length = 0 # To store length of result 
+    longest_motif = "" # To store longest motif
+    longest_motif_length = 0 # To store length of longest motif 
   
     # building table in bottom-up manner 
     index = 0
     for i in range(1, n + 1): 
         for j in range(i + 1, n + 1): 
               
-            # (j-i) > motif[i-1][j-1] to remove 
-            # overlapping 
+            # (j-i) > motif[i-1][j-1] to remove overlapping 
             if (dna[i - 1] == dna[j - 1] and
                 motif[i - 1][j - 1] < (j - i)): 
                 motif[i][j] = motif[i - 1][j - 1] + 1
@@ -176,7 +177,7 @@ def longestMotif(dna):
   
     # If we have non-empty motif, then insert  
     # all bps from first bp to  
-    # last bpof motif 
+    # last bp of the motif 
     if (longest_motif_length > 0): 
         for i in range(index - longest_motif_length + 1, 
                                     index + 1): 
@@ -232,8 +233,11 @@ stop = timeit.default_timer()
 print('> Find longest motifs: ', round(stop - start, 3), "s") 
 
 print("> Longest motif: " + str(longest_motif))
-print("> Number of repeated longest motif WITHOUT overlapping: " + str(dna.upper().count(longest_motif)) + str(" With: " + str(len(longest_motif)) + " bp"))
-print("> Number of repeated longest motif WITH overlapping: " + str(count_substring(dna,longest_motif)))
+print("> Number of repeated longest motif WITHOUT overlapping: " +
+str(dna.upper().count(longest_motif)) + str(" With: " +
+str(len(longest_motif)) + " bp"))
+print("> Number of repeated longest motif WITH overlapping: " +
+str(count_substring(dna,longest_motif)))
 ```
 
 * Well, At this step we can limit iterations to count all possible repeated motifs to  maximum length of 41bp. This may save time of the processing.
@@ -269,7 +273,8 @@ d = dict(motifs)
 start = timeit.default_timer()
 # filter only repeats at less twice
 # sort by motif length decreasing
-d = dict((k, v) for k, v in sorted(d.items(), key=lambda item: len(item[0]),reverse = True) if v >= 2)
+d = dict((k, v) for k, v in sorted(d.items(), 
+key=lambda item: len(item[0]),reverse = True) if v >= 2)
 # Sort by value decreasing
 #d = dict((k, v) for k, v in sorted(d.items(), key=lambda item: item[1],reverse = True) if v >= 2)
 stop = timeit.default_timer()
@@ -288,7 +293,8 @@ for key, value in d.items():
     ls.append(temp)
 
 stop = timeit.default_timer()
-print('> Reformating dictionary to list, include length of motifs (bp): ', round(stop - start,3), "s") 
+print('> Reformating dictionary to list, include length of motifs (bp): ',
+round(stop - start,3), "s") 
 print("> At all there are: ", len(ls), " motifs, with at less two repeats.")
 print("> Print motifs, length , repeats: ", *ls[1:20], sep = "\n")
 ```
@@ -309,7 +315,8 @@ for key, value in d.items():
     ls.append(temp)
 
 stop = timeit.default_timer()
-print('> Reformating dictionary to list, include length of motifs (bp): ', round(stop - start,3), "s") 
+print('> Reformating dictionary to list, include length of motifs (bp): ',
+round(stop - start,3), "s") 
 print("> At all there are: ", len(ls), " motifs, with at less two repeats.")
 print("> Print head of longest motifs, length: ", *ls[0:20], sep = "\n")
 print("> Print tail of shortest motifs, length: ", *ls[-20:-1], sep = "\n")
@@ -342,7 +349,8 @@ def allRepeatedMotifs(dna, minimum, maximum):
     start = timeit.default_timer()
     # filter only repeats at less twice
     # sort by motif length decreasing
-    d = dict((k, v) for k, v in sorted(d.items(), key=lambda item: len(item[0]),reverse = True) if v >= 2)
+    d = dict((k, v) for k, v in sorted(d.items(),
+    key=lambda item: len(item[0]),reverse = True) if v >= 2)
     # Sort by value decreasing
     #d = dict((k, v) for k, v in sorted(d.items(), key=lambda item: item[1],reverse = True) if v >= 2)
     stop = timeit.default_timer()
@@ -361,7 +369,8 @@ def allRepeatedMotifs(dna, minimum, maximum):
         ls.append(temp)
 
     stop = timeit.default_timer()
-    print('> Reformating dictionary to list, include length of motifs (bp): ', round(stop - start,3), "s") 
+    print('> Reformating dictionary to list, include length of motifs (bp): ',
+    round(stop - start,3), "s") 
     print("> At all there are: ", len(ls), " motifs, with at less two repeats.")
     #print("> Print motifs, length , repeats: ", *ls[1:20], sep = "\n")
 
@@ -390,8 +399,10 @@ def yubsisChallenge(dna, minimum = 9):
 
   longest_motif = longestMotif(dna)
   print("> Longest motif: " + str(longest_motif))
-  print("> Number of repeated longest motif WITHOUT overlapping: " + str(dna.upper().count(longest_motif)) + str(" With: " +   str(len(longest_motif)) + " bp"))
-  print("> Number of repeated longest motif WITH overlapping: " + str(count_substring(dna,longest_motif)))
+  print("> Number of repeated longest motif WITHOUT overlapping: " +
+  str(dna.upper().count(longest_motif)) + str(" With: " +   str(len(longest_motif)) + " bp"))
+  print("> Number of repeated longest motif WITH overlapping: " +
+  str(count_substring(dna,longest_motif)))
   
   motifs = allRepeatedMotifs(dna=dna ,minimum=minimum, maximum=len(longest_motif)+1)
   return(motifs)
