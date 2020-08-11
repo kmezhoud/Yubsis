@@ -378,7 +378,7 @@ ls = allRepeatedMotifs(dna, 9,41)
 print( *ls[0:20], sep = "\n")
 ```
 
-# Implementation  {.tabset .tabset-fade .tabset-pills}
+# Implementation of the main function  {.tabset .tabset-fade .tabset-pills}
 
 ## `yubsisChallenge` Function
 
@@ -407,6 +407,46 @@ dna = generate_DNA(1000)
 stop = timeit.default_timer()
 print("> Generate DNA with ", len(dna), " bp",  round(stop - start, 3), "s")
 
+final_list = yubsisChallenge(dna, minimum = 9)
+
+print(*final_list[0:20], sep = "\n")
+print(*final_list[-20:-1], sep = "\n")
+```
+
+## Straight way to run script
+
+All python functions are hosted in github at this [link](https://github.com/kmezhoud/Yubsis/tree/master/src).
+
+
+### Sourcing from github
+
+```{python}
+# sourcing scripts from github
+import requests
+exec(requests.get('https://raw.githubusercontent.com/kmezhoud/Yubsis/master/src/generate_DNA.py').text)
+exec(requests.get('https://raw.githubusercontent.com/kmezhoud/Yubsis/master/src/longestMotif.py').text)
+exec(requests.get('https://raw.githubusercontent.com/kmezhoud/Yubsis/master/src/count_substring.py').text)
+exec(requests.get('https://raw.githubusercontent.com/kmezhoud/Yubsis/master/src/allRepeatedMotifs.py').text)
+exec(requests.get('https://raw.githubusercontent.com/kmezhoud/Yubsis/master/src/yubsisChallenge.py').text)
+```
+
+### Generate DNA sequence
+
+```{python}
+import timeit
+
+random.seed(10)
+start = timeit.default_timer()
+dna = generate_DNA(1000)
+stop = timeit.default_timer()
+print("> Generate DNA with ", len(dna), " bp",  round(stop - start, 3), "s")
+```
+
+### Test the main function with your DNA sequences
+
+
+```{python}
+# dna is sequence of `ATCG`  in upper or lower or mixed cases
 final_list = yubsisChallenge(dna, minimum = 9)
 
 print(*final_list[0:20], sep = "\n")
