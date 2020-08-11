@@ -23,6 +23,7 @@ output:
   urlcolor: blue
 ---
 
+**A pdf version is available at this [link](https://github.com/kmezhoud/Yubsis/blob/master/Yubsis.pdf).**
 
 # Challenge  Description
 
