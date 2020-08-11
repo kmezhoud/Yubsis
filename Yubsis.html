@@ -553,8 +553,8 @@ summary {
 <li><a href="#run-and-example"><span class="toc-section-number">6.2</span> Run and Example</a></li>
 <li><a href="#straight-way-to-run-script"><span class="toc-section-number">6.3</span> Straight way to run script</a><ul>
 <li><a href="#sourcing-from-github"><span class="toc-section-number">6.3.1</span> Sourcing from github</a></li>
-<li><a href="#generate-dna-sequence-1"><span class="toc-section-number">6.3.2</span> Generate DNA sequence</a></li>
-<li><a href="#test-the-main-function-with-your-dna-sequences"><span class="toc-section-number">6.3.3</span> Test the main function with your DNA sequences</a></li>
+<li><a href="#generate-dna-sequence-if-needed"><span class="toc-section-number">6.3.2</span> Generate DNA sequence if needed</a></li>
+<li><a href="#test-the-script-with-your-dna-sequences"><span class="toc-section-number">6.3.3</span> Test the script with your DNA sequences</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -615,9 +615,10 @@ summary {
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">def</span> generate_DNA(N, alphabet<span class="op">=</span>[<span class="st">'ACGT'</span>]):</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">    <span class="cf">return</span> <span class="st">''</span>.join([random.choice(alphabet) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N)])</a>
 <a class="sourceLine" id="cb3-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">dna <span class="op">=</span> generate_DNA(<span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="bu">print</span>(dna)</a></code></pre></div>
+<a class="sourceLine" id="cb3-6" data-line-number="6">random.seed(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">dna <span class="op">=</span> generate_DNA(<span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="bu">print</span>(dna)</a></code></pre></div>
 <pre><code>## ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT</code></pre>
 <ul>
 <li><p>But we have to include some repeats in our DNA sequence.</p></li>
@@ -641,12 +642,13 @@ summary {
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="kw">def</span> generate_DNA(N, alphabet<span class="op">=</span>[<span class="st">'A'</span>,<span class="st">'C'</span>,<span class="st">'G'</span>,<span class="st">'T'</span>,repeat4,repeat10, repeat12]):</a>
 <a class="sourceLine" id="cb5-8" data-line-number="8">    <span class="cf">return</span> <span class="st">''</span>.join([random.choice(alphabet) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N)])</a>
 <a class="sourceLine" id="cb5-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10">dna <span class="op">=</span> generate_DNA(<span class="dv">20</span>)</a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="bu">print</span>(dna)</a></code></pre></div>
-<pre><code>## atcaatcaTAatcaAGtatgtatgtatgtcatgtcatgGCAGGTtatgtatgtatgtcatgtcatgatcaGtatgtatgtatg</code></pre>
+<a class="sourceLine" id="cb5-10" data-line-number="10">random.seed(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">dna <span class="op">=</span> generate_DNA(<span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="bu">print</span>(dna)</a></code></pre></div>
+<pre><code>## atcaATTatcaACTtatgtatgtatgTtatgtatgtatgGtcatgtcatgtatgtatgtatgCAatcaTGA</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="bu">print</span>(<span class="bu">len</span>(dna))</a></code></pre></div>
-<pre><code>## 83</code></pre>
+<pre><code>## 71</code></pre>
 <ul>
 <li>As you can see the length of the DNA is <strong>greater than 20bp</strong>, because the function considers that <code>repeat4</code>, <code>repeat10</code> and <code>repeat12</code> as a single bp.</li>
 </ul>
@@ -744,12 +746,12 @@ summary {
 <a class="sourceLine" id="cb11-6" data-line-number="6">dna <span class="op">=</span> generate_DNA(<span class="dv">1000</span>).upper()</a>
 <a class="sourceLine" id="cb11-7" data-line-number="7">stop <span class="op">=</span> timeit.default_timer()</a>
 <a class="sourceLine" id="cb11-8" data-line-number="8"><span class="bu">print</span>(<span class="st">&quot;&gt; Generate DNA with &quot;</span>, <span class="bu">len</span>(dna), <span class="st">&quot; bp&quot;</span>,  <span class="bu">round</span>(stop <span class="op">-</span> start, <span class="dv">3</span>), <span class="st">&quot;s&quot;</span>)</a></code></pre></div>
-<pre><code>## &gt; Generate DNA with  4189  bp 0.028 s</code></pre>
+<pre><code>## &gt; Generate DNA with  4189  bp 0.061 s</code></pre>
 <div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb13-1" data-line-number="1">start <span class="op">=</span> timeit.default_timer()</a>
 <a class="sourceLine" id="cb13-2" data-line-number="2">longest_motif <span class="op">=</span> longestMotif(dna)</a>
 <a class="sourceLine" id="cb13-3" data-line-number="3">stop <span class="op">=</span> timeit.default_timer()</a>
 <a class="sourceLine" id="cb13-4" data-line-number="4"><span class="bu">print</span>(<span class="st">'&gt; Find longest motifs: '</span>, <span class="bu">round</span>(stop <span class="op">-</span> start, <span class="dv">3</span>), <span class="st">&quot;s&quot;</span>) </a></code></pre></div>
-<pre><code>## &gt; Find longest motifs:  5.779 s</code></pre>
+<pre><code>## &gt; Find longest motifs:  5.66 s</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;&gt; Longest motif: &quot;</span> <span class="op">+</span> <span class="bu">str</span>(longest_motif))</a></code></pre></div>
 <pre><code>## &gt; Longest motif: ATCATATGTATGTATGTATGTATGTATGTATGTATGTATG</code></pre>
 <div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;&gt; Number of repeated longest motif WITHOUT overlapping: &quot;</span> <span class="op">+</span> <span class="bu">str</span>(dna.upper().count(longest_motif)) <span class="op">+</span> <span class="bu">str</span>(<span class="st">&quot; With: &quot;</span> <span class="op">+</span> <span class="bu">str</span>(<span class="bu">len</span>(longest_motif)) <span class="op">+</span> <span class="st">&quot; bp&quot;</span>))</a></code></pre></div>
@@ -772,7 +774,7 @@ summary {
 <a class="sourceLine" id="cb21-6" data-line-number="6">dna <span class="op">=</span> generate_DNA(<span class="dv">10000</span>).upper()</a>
 <a class="sourceLine" id="cb21-7" data-line-number="7">stop <span class="op">=</span> timeit.default_timer()</a>
 <a class="sourceLine" id="cb21-8" data-line-number="8"><span class="bu">print</span>(<span class="st">&quot;&gt; Generate DNA with &quot;</span>, <span class="bu">len</span>(dna), <span class="st">&quot; bp&quot;</span>,  <span class="bu">round</span>(stop <span class="op">-</span> start, <span class="dv">3</span>), <span class="st">&quot;s&quot;</span>)</a></code></pre></div>
-<pre><code>## &gt; Generate DNA with  42821  bp 0.03 s</code></pre>
+<pre><code>## &gt; Generate DNA with  42821  bp 0.032 s</code></pre>
 <div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb23-1" data-line-number="1">start <span class="op">=</span> timeit.default_timer()</a>
 <a class="sourceLine" id="cb23-2" data-line-number="2">substrs <span class="op">=</span> cntr() </a>
 <a class="sourceLine" id="cb23-3" data-line-number="3"></a>
@@ -788,7 +790,7 @@ summary {
 <a class="sourceLine" id="cb23-13" data-line-number="13"><span class="bu">print</span>(<span class="st">'&gt; Get all repeated substring: '</span>, <span class="bu">round</span>(stop <span class="op">-</span> start, <span class="dv">3</span>), <span class="st">&quot;s&quot;</span>) </a>
 <a class="sourceLine" id="cb23-14" data-line-number="14"></a>
 <a class="sourceLine" id="cb23-15" data-line-number="15"><span class="co"># Convert to dict</span></a></code></pre></div>
-<pre><code>## &gt; Get all repeated substring:  1.782 s</code></pre>
+<pre><code>## &gt; Get all repeated substring:  1.859 s</code></pre>
 <div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb25-1" data-line-number="1">d <span class="op">=</span> <span class="bu">dict</span>(motifs)</a>
 <a class="sourceLine" id="cb25-2" data-line-number="2">start <span class="op">=</span> timeit.default_timer()</a>
 <a class="sourceLine" id="cb25-3" data-line-number="3"><span class="co"># filter only repeats at less twice</span></a>
@@ -800,7 +802,7 @@ summary {
 <a class="sourceLine" id="cb25-9" data-line-number="9"><span class="bu">print</span>(<span class="st">'&gt; Filter and sort motifs with at less two repeats: '</span>, <span class="bu">round</span>(stop <span class="op">-</span> start, <span class="dv">3</span>), <span class="st">&quot;s&quot;</span>) </a>
 <a class="sourceLine" id="cb25-10" data-line-number="10"></a>
 <a class="sourceLine" id="cb25-11" data-line-number="11"><span class="co">#print(d)</span></a></code></pre></div>
-<pre><code>## &gt; Filter and sort motifs with at less two repeats:  0.599 s</code></pre>
+<pre><code>## &gt; Filter and sort motifs with at less two repeats:  1.057 s</code></pre>
 <div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb27-1" data-line-number="1">start <span class="op">=</span> timeit.default_timer()</a>
 <a class="sourceLine" id="cb27-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb27-3" data-line-number="3">ls <span class="op">=</span> []</a>
@@ -814,7 +816,7 @@ summary {
 <a class="sourceLine" id="cb27-11" data-line-number="11"></a>
 <a class="sourceLine" id="cb27-12" data-line-number="12">stop <span class="op">=</span> timeit.default_timer()</a>
 <a class="sourceLine" id="cb27-13" data-line-number="13"><span class="bu">print</span>(<span class="st">'&gt; Reformating dictionary to list, include length of motifs (bp): '</span>, <span class="bu">round</span>(stop <span class="op">-</span> start,<span class="dv">3</span>), <span class="st">&quot;s&quot;</span>) </a></code></pre></div>
-<pre><code>## &gt; Reformating dictionary to list, include length of motifs (bp):  0.172 s</code></pre>
+<pre><code>## &gt; Reformating dictionary to list, include length of motifs (bp):  0.173 s</code></pre>
 <div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;&gt; At all there are: &quot;</span>, <span class="bu">len</span>(ls), <span class="st">&quot; motifs, with at less two repeats.&quot;</span>)</a></code></pre></div>
 <pre><code>## &gt; At all there are:  86420  motifs, with at less two repeats.</code></pre>
 <div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;&gt; Print motifs, length , repeats: &quot;</span>, <span class="op">*</span>ls[<span class="dv">1</span>:<span class="dv">20</span>], sep <span class="op">=</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a></code></pre></div>
@@ -852,7 +854,7 @@ summary {
 <a class="sourceLine" id="cb33-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb33-10" data-line-number="10">stop <span class="op">=</span> timeit.default_timer()</a>
 <a class="sourceLine" id="cb33-11" data-line-number="11"><span class="bu">print</span>(<span class="st">'&gt; Reformating dictionary to list, include length of motifs (bp): '</span>, <span class="bu">round</span>(stop <span class="op">-</span> start,<span class="dv">3</span>), <span class="st">&quot;s&quot;</span>) </a></code></pre></div>
-<pre><code>## &gt; Reformating dictionary to list, include length of motifs (bp):  0.203 s</code></pre>
+<pre><code>## &gt; Reformating dictionary to list, include length of motifs (bp):  0.201 s</code></pre>
 <div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;&gt; At all there are: &quot;</span>, <span class="bu">len</span>(ls), <span class="st">&quot; motifs, with at less two repeats.&quot;</span>)</a></code></pre></div>
 <pre><code>## &gt; At all there are:  86420  motifs, with at less two repeats.</code></pre>
 <div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="bu">print</span>(<span class="st">&quot;&gt; Print head of longest motifs, length: &quot;</span>, <span class="op">*</span>ls[<span class="dv">0</span>:<span class="dv">20</span>], sep <span class="op">=</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a></code></pre></div>
@@ -955,11 +957,11 @@ summary {
 <a class="sourceLine" id="cb42-3" data-line-number="3">dna <span class="op">=</span> generate_DNA(<span class="dv">10000</span>).upper()</a>
 <a class="sourceLine" id="cb42-4" data-line-number="4">stop <span class="op">=</span> timeit.default_timer()</a>
 <a class="sourceLine" id="cb42-5" data-line-number="5"><span class="bu">print</span>(<span class="st">&quot;&gt; Generate DNA with &quot;</span>, <span class="bu">len</span>(dna), <span class="st">&quot; bp&quot;</span>,  <span class="bu">round</span>(stop <span class="op">-</span> start, <span class="dv">3</span>), <span class="st">&quot;s&quot;</span>)</a></code></pre></div>
-<pre><code>## &gt; Generate DNA with  42821  bp 0.071 s</code></pre>
+<pre><code>## &gt; Generate DNA with  42821  bp 0.04 s</code></pre>
 <div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb44-1" data-line-number="1">ls <span class="op">=</span> allRepeatedMotifs(dna, <span class="dv">9</span>,<span class="dv">41</span>)</a></code></pre></div>
-<pre><code>## &gt; Get all repeated substring:  1.56 s
-## &gt; Filter and sort motifs with at less two repeats:  0.599 s
-## &gt; Reformating dictionary to list, include length of motifs (bp):  0.117 s
+<pre><code>## &gt; Get all repeated substring:  1.266 s
+## &gt; Filter and sort motifs with at less two repeats:  0.483 s
+## &gt; Reformating dictionary to list, include length of motifs (bp):  0.094 s
 ## &gt; At all there are:  86420  motifs, with at less two repeats.</code></pre>
 <div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="bu">print</span>( <span class="op">*</span>ls[<span class="dv">0</span>:<span class="dv">20</span>], sep <span class="op">=</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a></code></pre></div>
 <pre><code>## ['GTTATGTATGTATGTCATGTCATGTATGTATGTATGTCAT', 40]
@@ -1011,14 +1013,14 @@ summary {
 <a class="sourceLine" id="cb49-8" data-line-number="8">dna <span class="op">=</span> generate_DNA(<span class="dv">1000</span>)</a>
 <a class="sourceLine" id="cb49-9" data-line-number="9">stop <span class="op">=</span> timeit.default_timer()</a>
 <a class="sourceLine" id="cb49-10" data-line-number="10"><span class="bu">print</span>(<span class="st">&quot;&gt; Generate DNA with &quot;</span>, <span class="bu">len</span>(dna), <span class="st">&quot; bp&quot;</span>,  <span class="bu">round</span>(stop <span class="op">-</span> start, <span class="dv">3</span>), <span class="st">&quot;s&quot;</span>)</a></code></pre></div>
-<pre><code>## &gt; Generate DNA with  4189  bp 0.045 s</code></pre>
+<pre><code>## &gt; Generate DNA with  4189  bp 0.033 s</code></pre>
 <div class="sourceCode" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb51-1" data-line-number="1">final_list <span class="op">=</span> yubsisChallenge(dna, minimum <span class="op">=</span> <span class="dv">9</span>)</a></code></pre></div>
 <pre><code>## &gt; Longest motif: ATCATATGTATGTATGTATGTATGTATGTATGTATGTATG
 ## &gt; Number of repeated longest motif WITHOUT overlapping: 2 With: 40 bp
 ## &gt; Number of repeated longest motif WITH overlapping: 2
-## &gt; Get all repeated substring:  0.18 s
-## &gt; Filter and sort motifs with at less two repeats:  0.066 s
-## &gt; Reformating dictionary to list, include length of motifs (bp):  0.005 s
+## &gt; Get all repeated substring:  0.117 s
+## &gt; Filter and sort motifs with at less two repeats:  0.051 s
+## &gt; Reformating dictionary to list, include length of motifs (bp):  0.003 s
 ## &gt; At all there are:  7135  motifs, with at less two repeats.</code></pre>
 <div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="bu">print</span>(<span class="op">*</span>final_list[<span class="dv">0</span>:<span class="dv">20</span>], sep <span class="op">=</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a></code></pre></div>
 <pre><code>## ['ATCATATGTATGTATGTATGTATGTATGTATGTATGTATG', 40]
@@ -1075,8 +1077,8 @@ summary {
 <a class="sourceLine" id="cb57-6" data-line-number="6"><span class="bu">exec</span>(requests.get(<span class="st">'https://raw.githubusercontent.com/kmezhoud/Yubsis/master/src/allRepeatedMotifs.py'</span>).text)</a>
 <a class="sourceLine" id="cb57-7" data-line-number="7"><span class="bu">exec</span>(requests.get(<span class="st">'https://raw.githubusercontent.com/kmezhoud/Yubsis/master/src/yubsisChallenge.py'</span>).text)</a></code></pre></div>
 </div>
-<div id="generate-dna-sequence-1" class="section level3">
-<h3><span class="header-section-number">6.3.2</span> Generate DNA sequence</h3>
+<div id="generate-dna-sequence-if-needed" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> Generate DNA sequence if needed</h3>
 <div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="im">import</span> timeit</a>
 <a class="sourceLine" id="cb58-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb58-3" data-line-number="3">random.seed(<span class="dv">10</span>)</a>
@@ -1084,18 +1086,18 @@ summary {
 <a class="sourceLine" id="cb58-5" data-line-number="5">dna <span class="op">=</span> generate_DNA(<span class="dv">1000</span>)</a>
 <a class="sourceLine" id="cb58-6" data-line-number="6">stop <span class="op">=</span> timeit.default_timer()</a>
 <a class="sourceLine" id="cb58-7" data-line-number="7"><span class="bu">print</span>(<span class="st">&quot;&gt; Generate DNA with &quot;</span>, <span class="bu">len</span>(dna), <span class="st">&quot; bp&quot;</span>,  <span class="bu">round</span>(stop <span class="op">-</span> start, <span class="dv">3</span>), <span class="st">&quot;s&quot;</span>)</a></code></pre></div>
-<pre><code>## &gt; Generate DNA with  4189  bp 0.053 s</code></pre>
+<pre><code>## &gt; Generate DNA with  4189  bp 0.055 s</code></pre>
 </div>
-<div id="test-the-main-function-with-your-dna-sequences" class="section level3">
-<h3><span class="header-section-number">6.3.3</span> Test the main function with your DNA sequences</h3>
-<div class="sourceCode" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="co"># dna is sequence of `ATCG`  in upper or lower or mixed cases</span></a>
+<div id="test-the-script-with-your-dna-sequences" class="section level3">
+<h3><span class="header-section-number">6.3.3</span> Test the script with your DNA sequences</h3>
+<div class="sourceCode" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="co"># dna is a sequence of `ATCG`  in upper or lower or mixed cases</span></a>
 <a class="sourceLine" id="cb60-2" data-line-number="2">final_list <span class="op">=</span> yubsisChallenge(dna, minimum <span class="op">=</span> <span class="dv">9</span>)</a></code></pre></div>
 <pre><code>## &gt; Longest motif: ATCATATGTATGTATGTATGTATGTATGTATGTATGTATG
 ## &gt; Number of repeated longest motif WITHOUT overlapping: 2 With: 40 bp
 ## &gt; Number of repeated longest motif WITH overlapping: 2
-## &gt; Get all repeated substring:  0.135 s
-## &gt; Filter and sort motifs with at less two repeats:  0.055 s
-## &gt; Reformating dictionary to list, include length of motifs (bp):  0.006 s
+## &gt; Get all repeated substring:  0.126 s
+## &gt; Filter and sort motifs with at less two repeats:  0.053 s
+## &gt; Reformating dictionary to list, include length of motifs (bp):  0.004 s
 ## &gt; At all there are:  7135  motifs, with at less two repeats.</code></pre>
 <div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="bu">print</span>(<span class="op">*</span>final_list[<span class="dv">0</span>:<span class="dv">20</span>], sep <span class="op">=</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a></code></pre></div>
 <pre><code>## ['ATCATATGTATGTATGTATGTATGTATGTATGTATGTATG', 40]

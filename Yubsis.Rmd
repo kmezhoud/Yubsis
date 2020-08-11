@@ -85,6 +85,7 @@ import random
 def generate_DNA(N, alphabet=['ACGT']):
     return ''.join([random.choice(alphabet) for i in range(N)])
 
+random.seed(10)
 dna = generate_DNA(100)
 
 print(dna)
@@ -115,6 +116,7 @@ repeat12 = 'tatg' * 3
 def generate_DNA(N, alphabet=['A','C','G','T',repeat4,repeat10, repeat12]):
     return ''.join([random.choice(alphabet) for i in range(N)])
 
+random.seed(10)
 dna = generate_DNA(20)
 
 print(dna)
@@ -430,7 +432,7 @@ exec(requests.get('https://raw.githubusercontent.com/kmezhoud/Yubsis/master/src/
 exec(requests.get('https://raw.githubusercontent.com/kmezhoud/Yubsis/master/src/yubsisChallenge.py').text)
 ```
 
-### Generate DNA sequence
+### Generate DNA sequence if needed
 
 ```{python}
 import timeit
@@ -442,11 +444,11 @@ stop = timeit.default_timer()
 print("> Generate DNA with ", len(dna), " bp",  round(stop - start, 3), "s")
 ```
 
-### Test the main function with your DNA sequences
+### Test the script with your DNA sequences
 
 
 ```{python}
-# dna is sequence of `ATCG`  in upper or lower or mixed cases
+# dna is a sequence of `ATCG`  in upper or lower or mixed cases
 final_list = yubsisChallenge(dna, minimum = 9)
 
 print(*final_list[0:20], sep = "\n")
